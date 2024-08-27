@@ -167,9 +167,48 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
+      var heartIcon = document.querySelectorAll(".fa-heart");
+heartIcon.forEach(function (icon) {
+  let isLiked = false;
+  icon.addEventListener("click", function () {
+    isLiked = !isLiked;
+    if (isLiked === true) {
+      icon.style.color = "red";
+    } else {
+      icon.style.color = "black";
+    }
+    console.log(icon);
+  });
+});
+
+// working on the increment + div
+var incrementButtons = document.querySelectorAll(".fas.fa-plus-circle");
+let Total = 0;
+var subTotalElement = document.querySelector(".total");
+incrementButtons.forEach(function (button) {
+  button.addEventListener("click", function () {
+    //increment individual quantity
+    var quantityParagragh = button.nextElementSibling;
+    let quantity = parseInt(quantityParagragh.textContent);
+    quantity += 1;
+
+    // update qty paragraph text content
+    quantityParagragh.textContent = quantity;
+    //Increment subTotal
+    var priceElement = button
+      .closest(".list-products")
+      .querySelector(".unit-price");
+    var itemPrice = parseInt(priceElement.textContent.slice(0 - 1));
+    Total += itemPrice;
+    console.log(Total());
+    subTotalDollar = "$" + Total.toString();
+    subTotalElement.textContent = subTotalDollar;
+  });
+});
+
     ></script>
 
     <!-- My JS -->
-    <script src="/js/script.js"></script>
+    <script src="./js/script.js"></script>
   </body>
 </html>
